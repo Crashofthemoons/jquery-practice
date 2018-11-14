@@ -1,3 +1,20 @@
+// const $ = require("jquery")
+
+$(document).ready(function() {
+    let $list = $("#put-it-here")
+    let $oldList = $("ul#list > li")
+
+    const addListItems =() =>{
+        console.log("add")
+        let $item = $oldList
+        console.log($item.text())
+        $list.append(`<li>${$item.text()}</li>`)
+
+    }
+
+    $("#add-to-list").click(addListItems)
+})
+
 $(document).ready(function() {
 
     // Use jQuery to get a reference to `load-songs`
@@ -8,15 +25,15 @@ $(document).ready(function() {
         $.ajax("songs.json").then(responseFromSongs => {
             console.log($songs)
             responseFromSongs.songs.forEach(song => {
-                $songs[0].innerHTML +=
-                `<section class="song">
-                    <h1 class="song__title">${song.title}</h1>
-                    <section class="song__description">
-                        Performed by ${song.artist} on the album ${song.album}
-                    </section>
-                </section>`})
+                $songs[0].append(`<section class="song">
+                <h1 class="song__title">${song.title}</h1>
+                <section class="song__description">
+                    Performed by ${song.artist} on the album ${song.album}
+                </section>
+            </section>`)
             })
-        }
+        })
+    }
 
     $("#load-songs").click(goGetTheData)
 
